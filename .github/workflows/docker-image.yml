@@ -1,4 +1,4 @@
-name: Build docker image
+name: Build docker image and run node tests
 
 on:
   push:
@@ -6,10 +6,9 @@ on:
 
 jobs:
   build-docker:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, X64, hc]
 
     outputs:
-      sha_short: ${{ steps.setvars.outputs.sha_short }}
       tag: ${{ steps.setvars.outputs.tag }}
 
     steps:
@@ -19,8 +18,7 @@ jobs:
       - name: Set variables
         id: setvars
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "tag=latest"
 
       - name: Submodule init
         run: |
@@ -50,4 +48,3 @@ jobs:
           target: executor
           tags: |
             a-stoyanovski/zkevm-prover:${{ steps.setvars.outputs.tag }}
-            a-stoyanovski/zkevm-prover:${{ steps.setvars.outputs.sha_short }}
