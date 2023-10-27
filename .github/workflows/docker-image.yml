@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-docker:
-    runs-on: [self-hosted, linux, X64, hc]
+    runs-on: [self-hosted, linux, X64]
 
     outputs:
       tag: ${{ steps.setvars.outputs.tag }}
@@ -45,6 +45,6 @@ jobs:
           file: Dockerfile-GHA
           platforms: linux/amd64
           push: true
-          target: executor
+          target: test
           tags: |
             a-stoyanovski/zkevm-prover:${{ steps.setvars.outputs.tag }}
