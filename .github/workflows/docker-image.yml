@@ -18,6 +18,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v6
       with:
         image: prover
+        tags: latest
         registry: ghcr.io
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.ACCESS_TOKEN }}
