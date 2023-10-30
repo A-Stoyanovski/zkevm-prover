@@ -37,5 +37,5 @@ jobs:
           file: Dockerfile-GHA
           platforms: linux/amd64
           push: true
-          target: executor
+          target: asd
           tags: latest
